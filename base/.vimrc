@@ -469,6 +469,12 @@ augroup exec_cmd
         execute 'autocmd FileType ' . ft . ' nnoremap <buffer> <leader>x :ExecScript ' . escape(cmd, ' ') . ' %<CR>'
     endfor
 augroup end
+" ---
+augroup keywordprg_filetype
+    autocmd!
+    autocmd FileType c,sh,awk setlocal keywordprg=man
+    autocmd FileType cpp setlocal keywordprg=cppman
+augroup end
 " }}}
 
 
