@@ -411,7 +411,7 @@ augroup end
 " ---
 augroup syntax_complete
     autocmd!
-    autocmd FileType * set omnifunc=syntaxcomplete#Complete
+    autocmd FileType * setlocal omnifunc=syntaxcomplete#Complete
 augroup end
 " ---
 augroup fold_autoload
