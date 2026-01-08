@@ -472,11 +472,13 @@ augroup exec_cmd
     endfor
 augroup end
 " ---
-augroup keywordprg_filetype
+augroup language_doc
     autocmd!
     autocmd FileType sh,awk,c setlocal keywordprg=man
     autocmd FileType cpp setlocal keywordprg=cppman
-    autocmd FileType scheme setlocal keywordprg=
+    autocmd FileType scheme
+          \ setlocal keywordprg=
+          \ nnoremap <buffer> K <Nop>
 augroup end
 " }}}
 
