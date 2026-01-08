@@ -30,17 +30,15 @@ function! s:Formatter(bin, cmd) abort
     echo 'buffer cleaned'
 endfunction
 " ---
-augroup language_cmd
+augroup python_cmd
     autocmd!
     autocmd FileType python command! -buffer -bar -nargs=0 Black call <SID>Formatter('black', 'black')
     autocmd FileType python nnoremap <buffer> <leader>d :Black<CR>
     autocmd FileType python nnoremap <buffer> <leader>x :ExecScript python3 %<CR>
-    autocmd FileType scheme nnoremap <buffer> <leader>x :ExecScript scheme\ --script %<CR>
 augroup end
 " ---
 augroup keywordprg_filetype
     autocmd FileType python setlocal keywordprg=pydoc
-    autocmd FileType scheme setlocal keywordprg=
 augroup end
 " }}}
 

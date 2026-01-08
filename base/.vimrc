@@ -466,6 +466,7 @@ augroup exec_cmd
     for [ft, cmd] in [
           \     ['sh', 'sh'],
           \     ['awk', 'awk -f'],
+          \     ['scheme', 'scheme --script'],
           \ ]
         execute 'autocmd FileType ' . ft . ' nnoremap <buffer> <leader>x :ExecScript ' . escape(cmd, ' ') . ' %<CR>'
     endfor
@@ -473,8 +474,9 @@ augroup end
 " ---
 augroup keywordprg_filetype
     autocmd!
-    autocmd FileType c,sh,awk setlocal keywordprg=man
+    autocmd FileType sh,awk,c setlocal keywordprg=man
     autocmd FileType cpp setlocal keywordprg=cppman
+    autocmd FileType scheme setlocal keywordprg=
 augroup end
 " }}}
 
