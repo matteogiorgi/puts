@@ -19,21 +19,15 @@ run_installer() {
 ################
 
 cat << EOF
- _______       __            ___             __         __ __
-|   _   .--.--|  |_.-----.  |   .-----.-----|  |_.---.-|  |  |
-|.  1   |  |  |   _|__ --|  |.  |     |__ --|   _|  _  |  |  |
-|.  ____|_____|____|_____|  |.  |__|__|_____|____|___._|__|__|
-|:  |                       |:  |
-|::.|                       |::.|
-\`---'                       \`---'
 
 This script installs PUTS (the "Portable UNIX TUI System") on
 your system. It will run two installers: puts_base, puts_plug.
-• puts_base installs the basic packages and configures Bash,
-  Vim and Tmux for you
-• puts_plug installs additional plugins for your Vim alongside
-  a little vimscript configuration to glue them together
-
+╔═════════╗
+║puts_base║ Installs the basic packages and configures Bash,
+╚═════════╝ Vim and Tmux for you.
+╔═════════╗
+║puts_plug║ Installs additional plugins for your Vim alongside a
+╚═════════╝ little vimscript configuration to glue them together.
 EOF
 
 
@@ -46,7 +40,7 @@ ROOT_DIR=$(CDPATH= cd -- "$(dirname -- "$0")" 2>/dev/null && pwd)
 BASE_INSTALLER="$ROOT_DIR/puts_base"
 PLUG_INSTALLER="$ROOT_DIR/puts_plug"
 # ---
-printf "\n"
+printf "\n\n"
 run_installer "$BASE_INSTALLER"
 # ---
 printf "\n\n"
