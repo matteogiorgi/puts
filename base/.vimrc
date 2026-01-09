@@ -297,7 +297,7 @@ function! s:ScratchBuffer() abort
         if &l:filetype !=# 'scratch'
             setlocal filetype=scratch
         endif
-        setlocal bufhidden=hide
+        setlocal bufhidden=wipe
         setlocal nobuflisted
         setlocal noswapfile
         setlocal nospell
@@ -350,12 +350,12 @@ augroup netrw_prettyfier
     autocmd FileType netrw
           \ cd %:p:h|
           \ setlocal nonu nornu|
-          \ setlocal bufhidden=delete|
+          \ setlocal bufhidden=wipe|
           \ setlocal nobuflisted|
           \ setlocal cursorline
     autocmd VimEnter *
           \ if !argc() && exists(':Explore')|
-          \     Explore|
+          \     keepalt Explore|
           \ endif
     let g:netrw_keepdir = 0
     let g:netrw_banner = 0
