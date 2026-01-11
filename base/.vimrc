@@ -326,7 +326,7 @@ endfunction
 " ---
 function! s:GitDiff() abort
     if system('git rev-parse --is-inside-work-tree 2>/dev/null') !=# "true\n"
-        echo "'" . getcwd() . "' is not in a git repo"
+        echo '"' . getcwd() . '" is not in a git repo'
         return
     endif
     silent! call <SID>CleanBuffer()
@@ -341,7 +341,7 @@ function! s:KeywordLookup() abort
     silent! execute '!' . &keywordprg . ' ' . shellescape(l:word) . ' >/dev/tty 2>/dev/null'
     redraw!|redrawstatus!|redrawtabline
     if v:shell_error != 0
-        echo "'" . l:word . "' not in doc"
+        echo '"' . l:word . '" not in doc'
     endif
 endfunction
 " ---
@@ -359,7 +359,7 @@ function! s:OpenHTML(page) abort
     silent! execute '!w3m ' . shellescape(l:target) . ' >/dev/tty 2>/dev/null'
     redraw!|redrawstatus!|redrawtabline
     if v:shell_error != 0
-        echo "'" . l:target . "' not readable"
+        echo '"' . l:target . '" not readable'
     endif
 endfunction
 " }}}
