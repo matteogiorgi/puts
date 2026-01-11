@@ -7,10 +7,10 @@
 
 
 " Init {{{
-if exists('g:plugme')
+if exists('g:plugme') || !exists('g:pbase') || v:version < 900
     finish
 endif
-let g:plugme = 1
+let g:pplug = 1
 "}}}
 
 

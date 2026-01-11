@@ -12,6 +12,7 @@ if v:version < 900
 elseif !isdirectory(expand('~/.vim'))
     silent! execute '!mkdir -p ~/.vim >/dev/null 2>&1'
 endif
+let g:pbase = 1
 " }}}
 
 
@@ -345,7 +346,7 @@ function! s:KeywordLookup() abort
 endfunction
 " ---
 function! s:OpenHTML(page) abort
-    if ! executable('w3m')
+    if !executable('w3m')
         echo 'w3m not found'
         return
     endif

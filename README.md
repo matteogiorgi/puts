@@ -4,14 +4,12 @@ This repository contains configuration files and installation scripts for a comp
 
 The purpose of this project is to provide a vim-loving, neckbeard-like, barebone environment, fancy enough to be used as a daily driver but not too fancy to be bloated with unnecessary software and dependencies.
 
-For a simpler all-gui setup, take a look at [GUTS](https://github.com/matteogiorgi/guts/), it may fit your needs better.
-
 
 
 
 ## Install
 
-The only prerequisite you need to cover is a working *Debian* in any version or form. There are two installers at your disposal (for now 😎) to easy the setup process: [`puts_base`](https://github.com/matteogiorgi/puts/blob/main/puts_base) and [`puts_plug`](https://github.com/matteogiorgi/puts/blob/main/puts_plug). Each of the installer is independent from the other and the two can be run in any order.
+The only prerequisite you need to cover is a working *Debian* in any version or form. There are two installers at your disposal (for now 😎) to easy the setup process: [`puts_base`](https://github.com/matteogiorgi/puts/blob/main/puts_base) and [`puts_plug`](https://github.com/matteogiorgi/puts/blob/main/puts_plug).
 
 > The installers do not symlink any file, they just copy the configurations in the right place, so they can be easily modified end eventually resetted running the single installer again.
 
