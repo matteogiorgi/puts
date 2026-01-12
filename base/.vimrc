@@ -501,7 +501,8 @@ augroup language_doc
     autocmd FileType vim nnoremap <buffer> K K
     autocmd FileType sh,awk,c,cpp nnoremap <buffer> K :call <SID>KeywordLookup()<CR>
     autocmd FileType vim setlocal keywordprg=:help
-    autocmd FileType sh,awk,c setlocal keywordprg=man
+    autocmd FileType sh,awk setlocal keywordprg=man
+    autocmd FileType c setlocal keywordprg=man\ 3
     autocmd FileType cpp setlocal keywordprg=cppman
 augroup end
 " }}}
