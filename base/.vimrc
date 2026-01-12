@@ -97,7 +97,7 @@ set laststatus=2 showtabline=1
 set termguicolors
 set nocompatible
 set esckeys
-set tags+=./tags;
+set tags=./tags;,./TAGS;
 " ---
 set path+=**
 set completeopt=menuone,popup,noinsert,noselect
@@ -120,12 +120,17 @@ endif
 
 " Functions {{{
 function! s:RootDir() abort
-    let l:root = getcwd()
-    if executable('git')
-        let l:root = system('git rev-parse --show-toplevel 2>/dev/null')
-        let l:root = v:shell_error == 0 ? substitute(l:root, '\n\+$', '', '') : getcwd()
+    let l:base = expand('%:p:h')
+    if empty(l:base) || !isdirectory(l:base)
+        let l:base = getcwd()
     endif
-    return l:root
+    if executable('git')
+        let l:root = system('git -C ' . shellescape(l:base) . ' rev-parse --show-toplevel 2>/dev/null')
+        if v:shell_error == 0
+            return trim(l:root)
+        endif
+    endif
+    return l:base
 endfunction
 " ---
 function! s:CTags() abort
