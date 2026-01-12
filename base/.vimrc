@@ -489,7 +489,6 @@ augroup exec_cmd
     for [ft, cmd] in [
           \     ['sh', 'sh'],
           \     ['awk', 'awk -f'],
-          \     ['scheme', 'scheme --script'],
           \ ]
         execute 'autocmd FileType ' . ft . ' nnoremap <buffer> <leader>x :ExecScript ' . escape(cmd, ' ') . ' %<CR>'
     endfor
@@ -497,7 +496,6 @@ augroup end
 " ---
 augroup language_doc
     autocmd!
-    autocmd FileType scheme nnoremap <buffer> K :call <SID>OpenHTML('/usr/share/doc/chezscheme-doc/html/csug_1.html')<CR>
     autocmd FileType vim nnoremap <buffer> K K
     autocmd FileType sh,awk,c,cpp nnoremap <buffer> K :call <SID>KeywordLookup()<CR>
     autocmd FileType vim setlocal keywordprg=:help
