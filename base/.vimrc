@@ -336,6 +336,7 @@ endfunction
 function! s:KeywordLookup() abort
     let l:word = expand('<cword>')
     if empty(l:word)
+        echo 'empty search'
         return
     endif
     silent! execute '!' . &keywordprg . ' ' . shellescape(l:word) . ' >/dev/tty 2>/dev/null'
