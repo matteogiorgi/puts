@@ -30,7 +30,7 @@ endfunction
 " ---
 augroup language_cmd
     autocmd FileType python nnoremap <buffer> <leader>d :call <SID>Formatter('black', 'black')<CR>
-    autocmd FileType python nnoremap <buffer> <leader>x :ExecScript python3 %<CR>
+    autocmd FileType python nnoremap <buffer> <leader>x :ExecScript terminal\ ++curwin\ python3 %<CR>
 augroup end
 " ---
 augroup language_doc
