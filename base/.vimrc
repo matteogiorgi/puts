@@ -350,24 +350,6 @@ function! s:KeywordLookup() abort
         echo '"' . l:word . '" not in doc'
     endif
 endfunction
-" ---
-function! s:OpenHTML(page) abort
-    if !executable('w3m')
-        echo 'w3m not found'
-        return
-    endif
-    let l:target = expand(a:page)
-    if filereadable(l:target)
-        silent! execute '!w3m ' . l:target . ' >/dev/tty 2>/dev/null'
-        redraw!|redrawstatus!|redrawtabline
-        return
-    endif
-    silent! execute '!w3m ' . shellescape(l:target) . ' >/dev/tty 2>/dev/null'
-    redraw!|redrawstatus!|redrawtabline
-    if v:shell_error != 0
-        echo '"' . l:target . '" not readable'
-    endif
-endfunction
 " }}}
 
 
@@ -411,17 +393,14 @@ augroup linenumber_prettyfier
           \ endif|
           \ setlocal nocursorline|
           \ setlocal number norelativenumber
-    autocmd InsertLeave,BufWinEnter *
+    autocmd InsertLeave *
           \ setlocal colorcolumn=|
           \ setlocal cursorline|
           \ setlocal number relativenumber
-augroup end
-" ---
-augroup terminal_prettyfier
-    autocmd!
     autocmd TerminalOpen *
           \ setlocal nobuflisted bufhidden=wipe|
           \ setlocal nonumber norelativenumber
+    autocmd FileType help,qf setlocal nonumber norelativenumber
 augroup end
 " ---
 augroup syntax_prettyfier
@@ -532,7 +511,6 @@ command! -nargs=0 SSession call <SID>SSession()
 command! -nargs=0 OSession call <SID>OSession()
 command! -nargs=0 GitDiff call <SID>GitDiff()
 command! -nargs=0 KeywordLookup call <SID>KeywordLookup()
-command! -nargs=? OpenHTML call <SID>OpenHTML(<q-args>)
 " }}}
 
 
