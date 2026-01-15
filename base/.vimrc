@@ -407,7 +407,7 @@ augroup linenumber_prettyfier
           \ endif
     autocmd InsertEnter *
           \ if !get(b:, 'wrapmotion', 0)|
-          \     let &l:colorcolumn = '121,'.join(range(121,999),',')|
+          \     let &l:colorcolumn = '121,'.join(range(121, 999), ',')|
           \ endif|
           \ setlocal nocursorline|
           \ setlocal number norelativenumber
