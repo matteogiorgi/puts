@@ -63,7 +63,7 @@ fexplore() {
               `\fzy -p "$(pwd | sed "s|^$HOME|~|")$(git_branch "(%s)") > ")"; do
             FEXPLORE="$PWD/${FEXPLORE%[@|*|/]}"
             if [[ -d "$FEXPLORE" ]]; then
-                cd "$FEXPLORE" || return
+                cd "$FEXPLORE" || return 1
                 printf '%s\n' "$FEXPLORE" > "$TMP"
                 continue
             fi
@@ -72,7 +72,7 @@ fexplore() {
                 *) xdg-open "$FEXPLORE" &>/dev/null;;
             esac
         done
-    )
+    ) || return
     [[ -f "$TMP" ]] || return
     cd "$(<"$TMP")" || return
     rm -f "$TMP"
@@ -100,7 +100,7 @@ fjump() {
         FJUMP="$(echo "$FJUMP" | sed 's|^\./||' | `
               `\fzy -p "$(pwd | sed "s|^$HOME|~|")$(git_branch "(%s)") > ")"
         [[ -d "$FJUMP" ]] && printf '%s\n' "$FJUMP" > "$TMP"
-    )
+    ) || return
     [[ -f "$TMP" ]] || return
     cd "$(<"$TMP")" || return
     rm -f "$TMP"
@@ -110,7 +110,7 @@ fhook() {
     (command -v tmux && command -v fzy) &>/dev/null || return
     if [[ -n "$TMUX" ]]; then
         \tmux display-message -p 'attached to #S'
-        return
+        return 0
     fi
     local FHOOK BASENAME=${PWD##*/}; BASENAME=${BASENAME:0:37}
     local SESSIONS="$(\tmux list-sessions -F '#{session_name}' 2>/dev/null)"
@@ -123,7 +123,7 @@ fhook() {
           `\fzy -p "tmux-sessions ($SCOUNTER) > " )"; then
         if [[ "$FHOOK" == "$BASENAME (new)"  ]]; then
             \tmux new-session -c "$PWD" -s "$BASENAME"
-            return
+            return 0
         fi
         \tmux attach -t "$FHOOK"
     fi
@@ -133,7 +133,7 @@ fgit() {
     (command -v git && command -v fzy) &>/dev/null || return
     if [[ $(\git rev-parse --is-inside-work-tree 2>/dev/null) != "true" ]]; then
         echo "'$PWD' is not a git repo"
-        return
+        return 1
     fi
     local FGIT
     if FGIT="$(\git log --graph --format="%h%d %s %cr" "$@" | `
@@ -147,11 +147,11 @@ fbase() {
     command -v git &>/dev/null || return
     if [[ $(\git rev-parse --is-inside-work-tree 2>/dev/null) != "true" ]]; then
         echo "'$PWD' is not a git repo"
-        return
+        return 1
     fi
     if [[ $(\git rev-parse --show-toplevel 2>/dev/null) == "$PWD" ]]; then
         echo "'$PWD' is already toplevel"
-        return
+        return 1
     fi
     cd "$(\git rev-parse --show-toplevel 2>/dev/null)"
 }
@@ -172,7 +172,7 @@ fkill() {
               \fzy -p "process '${PROCCMD:0:50}' selected > ")"; then
             if [[ ! "${FKILLSIGNAL:0:2}" =~ ^( [0-9]|[12][0-9]|3[01])$ ]]; then
                 echo "process '${PROCCMD:0:50}' intact"
-                return
+                return 1
             fi
             kill -s "${FKILLSIGNAL:0:2}" "$PROCPID"
             echo "process '${PROCCMD:0:50}' signaled with ${FKILLSIGNAL:3}"
