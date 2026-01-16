@@ -170,7 +170,7 @@ fkill() {
               `23 SIGURG\n24 SIGXCPU\n25 SIGXFSZ\n26 SIGVTALRM\n27 SIGPROF\n28 SIGWINCH\n`
               `29 SIGIO\n30 SIGPWR\n31 SIGSYS\n" | \
               \fzy -p "process '${PROCCMD:0:50}' selected > ")"; then
-            if [[ "${FKILLSIGNAL:0:2}" == " 0" ]]; then
+            if [[ ! "${FKILLSIGNAL:0:2}" =~ ^( [0-9]|[12][0-9]|3[01])$ ]]; then
                 echo "process '${PROCCMD:0:50}' intact"
                 return
             fi
