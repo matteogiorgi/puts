@@ -347,7 +347,7 @@ function! s:KeywordLookup() abort
     silent! execute '!' . &keywordprg . ' ' . shellescape(l:word) . ' >/dev/tty 2>/dev/null'
     redraw!|redrawstatus!|redrawtabline
     if v:shell_error != 0
-        echo '"' . l:word . '" not in doc'
+        echo '"' . l:word . '" not available'
     endif
 endfunction
 " }}}
@@ -484,8 +484,8 @@ augroup end
 " ---
 augroup language_doc
     autocmd!
-    autocmd FileType vim,help nnoremap <buffer> K K
-    autocmd FileType sh,awk,c,cpp nnoremap <buffer> K :call <SID>KeywordLookup()<CR>
+    autocmd FileType vim,help nnoremap <buffer> <silent>K K
+    autocmd FileType sh,awk,c,cpp nnoremap <buffer> <silent>K :call <SID>KeywordLookup()<CR>
     autocmd FileType vim,help setlocal keywordprg=:help
     autocmd FileType sh,awk setlocal keywordprg=man
     autocmd FileType c setlocal keywordprg=man\ 3
