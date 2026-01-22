@@ -458,6 +458,12 @@ augroup scratchbuffer_autosave
           \ endif
 augroup end
 " ---
+augroup buffer_autoreload
+    autocmd!
+    autocmd CursorHold,CursorHoldI * silent! checktime
+    autocmd FileChangedShellPost * echo 'checktime: buffers changed on disk'
+augroup end
+" ---
 augroup ctags_onsave
     autocmd!
     autocmd BufWritePost *
