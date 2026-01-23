@@ -540,11 +540,9 @@ xnoremap <silent><expr> L '>' . repeat('gv', v:count1)
 xnoremap <silent><expr> J ':move<Space>''>+' . v:count1 . "<CR>gv=gv"
 xnoremap <silent><expr> K ':move<Space>''<-' . (v:count1 + 1) . "<CR>gv=gv"
 " ---
-tnoremap <silent><C-q> <C-\><C-n>
-inoremap <silent><C-x><C-g> <C-x><C-]>
 nnoremap <silent><C-p> :bprev<CR>
 nnoremap <silent><C-n> :bnext<CR>
-nnoremap <silent>ZI :buffer#<CR>
+nnoremap <silent><C-g> :buffer#<CR>
 nnoremap <silent>ZJ <C-]>
 nnoremap <silent>ZK <C-t>
 nnoremap <silent>ZO :tab<Space>split<CR>
@@ -552,6 +550,8 @@ nnoremap <silent>ZU :update<BAR>silent!<Space>wviminfo<CR>
 nnoremap <silent>K <Nop>
 nnoremap <silent>Y y$
 xnoremap <silent>p "_dP
+inoremap <silent><C-x><C-g> <C-x><C-]>
+tnoremap <silent>,, <C-\><C-n>
 " ---
 nnoremap <silent><leader>q :ToggleQF<CR>
 nnoremap <silent><leader>w :ToggleWM<CR>
